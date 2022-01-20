@@ -1,0 +1,7 @@
+POST https://ygh14.azurewebsites.net/keys/cmt0
+Content-Type: "application/json"
+X-IAM-GHONEM: "rer"
+
+{
+    "expireDate": "1/20/2022"
+}
