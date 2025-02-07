@@ -21,7 +21,7 @@ jobs:
         run: sudo apt-get install -y cloc
 
       - name: Generate LOC JSON
-        run: cloc --by-file --sum-one --json . > loc_report.json
+        run: cloc --by-file --sum-one --json . | tee -a loc_report.json
 
       - name: Extract total LOC
         run: |
