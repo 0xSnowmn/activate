@@ -1,0 +1,29 @@
+name: Count Lines of Code
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  count-loc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install cloc
+        run: sudo apt-get install -y cloc
+
+      - name: Generate LOC JSON
+        run: cloc --by-file --sum-one --json . > loc_report.json
+
+      - name: Extract total LOC
+        run: |
+          TOTAL_LOC=$(jq '.SUM.code' loc_report.json)
+          echo "Total LOC: $TOTAL_LOC"
